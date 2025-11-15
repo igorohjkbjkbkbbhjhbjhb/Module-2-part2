@@ -1,35 +1,49 @@
 package com.example.TestModul2.Component;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Component;
+
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class Dz8Component {
-    private int totalTasks;
-    private int completedTasts;
-    private int pendingTasks;
+    private Long id;
+    private String description;
+    private boolean completed;
 
-    public int getTotalTasks() {
-        return totalTasks;
+    public Long getId() {
+        return id;
     }
 
-    public void setTotalTasks(int totalTasks) {
-        this.totalTasks = totalTasks;
+    public String getDescription() {
+        return description;
     }
 
-    public int getCompletedTasts() {
-        return completedTasts;
+    public boolean isCompleted() {
+        return completed;
     }
 
-    public void setCompletedTasts(int completedTasts) {
-        this.completedTasts = completedTasts;
+    public void setId(Long id) {
+        if (id >= 0){
+        this.id = id;}
     }
 
-    public int getPendingTasks() {
-        return pendingTasks;
+    public void setDescription(String description) {
+        for (int i = 0; i <= description.length(); i++) {
+            if (description != null && description.charAt(i) != ' ') {
+                this.description = description;
+            }
+        }
     }
 
-    public void setPendingTasks(int pendingTasks) {
-        this.pendingTasks = pendingTasks;
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
-    public Dz8Component(){}
+    public Dz8Component(){
+
+
+
+    }
 }
