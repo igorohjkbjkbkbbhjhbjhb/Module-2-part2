@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tasks")
@@ -54,12 +55,8 @@ class Dz8Controller {
     }
 
     @GetMapping("/stats")
-    public int getStats() {
+    public Map getStats() {
         return taskService.getStats();
-    }
-    @GetMapping("/statsNot")
-    public int getStatsNot() {
-        return taskService.getStatsNot();
     }
 }
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -34,11 +35,7 @@ public class TaskService {
         return taskRepository.putById(id);
     }
 
-    public int getStats() {
+    public Map getStats() {
         return taskRepository.getStats();
-    }
-
-    public int getStatsNot() {
-        return taskRepository.getStatsNot();
     }
 }

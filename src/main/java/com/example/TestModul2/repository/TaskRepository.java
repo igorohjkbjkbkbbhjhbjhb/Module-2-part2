@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class TaskRepository {
@@ -13,6 +14,9 @@ public class TaskRepository {
     int isTaskCompleated = 0;
 
     int isntTaskCompleated = 0;
+
+    int isTask = 0;
+
 
     public void add(Task task) {
         taskRepository.add(task);
@@ -34,22 +38,21 @@ public class TaskRepository {
         return true;
     }
 
-    public int getStatsNot() {
-        for ( Task task : taskRepository){
-            if (!task.isCompleted()) {
-                isntTaskCompleated +=1;
-            }
-        }
-        return isntTaskCompleated;
-
-    }
-    public int getStats() {
+    public Map getStats() {
         for ( Task task : taskRepository){
             if (task.isCompleted()) {
                 isTaskCompleated +=1;
+                isTask++;
+            }else {
+                isntTaskCompleated +=1;
+                isTask++;
             }
         }
-        return isTaskCompleated;
+        return Map.of(
+                "Выполненные", isTaskCompleated,
+                "Невыполненные", isntTaskCompleated,
+                "Всего", isTask
+        );
 
     }
 
