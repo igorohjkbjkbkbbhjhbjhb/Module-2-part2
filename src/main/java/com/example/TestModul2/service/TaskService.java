@@ -27,7 +27,18 @@ public class TaskService {
     public List<Task> getAllTasks() {
         return taskRepository.getAll();
     }
-    public void deleteTasks(Task task) {
-        this.taskRepository.delete(task);
+    public boolean deleteTask(Long id) {
+        return taskRepository.deleteById(id);
+    }
+    public boolean putTask(Long id) {
+        return taskRepository.putById(id);
+    }
+
+    public int getStats() {
+        return taskRepository.getStats();
+    }
+
+    public int getStatsNot() {
+        return taskRepository.getStatsNot();
     }
 }

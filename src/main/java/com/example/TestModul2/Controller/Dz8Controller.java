@@ -1,14 +1,11 @@
 package com.example.TestModul2.Controller;
 
-import com.example.TestModul2.Component.Dz8Component;
-import com.example.TestModul2.Component.InfoComponent;
 import com.example.TestModul2.service.TaskService;
 import com.example.TestModul2.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -38,19 +35,32 @@ class Dz8Controller {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteTask(@PathVariable Long id, @RequestBody Task updateTask) {
-        return null;
+    public ResponseEntity<String> deleteTask(@PathVariable Long id) {
+        if (taskService.deleteTask(id)) {
+            return ResponseEntity.ok("Задача с id " + id + " удалена.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateTask(@PathVariable Long id, @RequestBody Task updateTask) {
-        return null;
+    public ResponseEntity<?> updateTask(@PathVariable Long id, @RequestBody Task updatedTask) {
+        if (taskService.putTask(id)) {
+            return ResponseEntity.ok("Задача с id " + id + " изменена.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-//    @GetMapping("/stats")
-//    public int getStats() {
-//        return Math.toIntExact(dz8Component.getTasks());
-//    }
+    @GetMapping("/stats")
+    public int getStats() {
+        return taskService.getStats();
+    }
+    @GetMapping("/statsNot")
+    public int getStatsNot() {
+        return taskService.getStatsNot();
+    }
 }
 
 
